@@ -1,9 +1,6 @@
 describe('template spec', 
   {
-    retries: {
-      runMode: 3,
-      openMode: 3,
-    },
+    "retries": 2
   },
   () => {
   it('check variables', () => {   
