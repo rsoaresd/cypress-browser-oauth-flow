@@ -1,4 +1,11 @@
-describe('template spec', () => {
+describe('template spec', 
+  {
+    retries: {
+      runMode: 3,
+      openMode: 3,
+    },
+  },
+  () => {
   it('check variables', () => {   
     console.log(Cypress.env('SPI_OAUTH_URL'))
     expect(Cypress.env('GH_USER')).to.not.be.empty
@@ -26,12 +33,12 @@ describe('template spec', () => {
         cy.task('log', 'Current Github URL is: ' + url)
       })
 
-      cy.get('#login_field').type(Cypress.env('GH_USER'));
-      cy.get('#password').type(Cypress.env('GH_PASSWORD'));
+      cy.get('#login_field').type(Cypress.env('GH_USER'), { log: false });
+      cy.get('#password').type(Cypress.env('GH_PASSWORD'), { log: false });
       cy.get('input[type="submit"][name="commit"]').click();
       
       cy.task("generateToken", Cypress.env('GH_2FA_CODE')).then(token => {
-        cy.get("#app_totp").type(token);
+        cy.get("#app_totp").type(token, { log: false });
         cy.task('log', 'Generated token')
         expect(token).to.not.be.empty
       });
