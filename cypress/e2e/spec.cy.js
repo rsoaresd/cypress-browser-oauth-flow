@@ -16,6 +16,10 @@ describe('template spec',
 
   it('passes', () => {   
 
+    const attempt = Cypress.currentRetry
+    cy.task('log', 'Waiting ' + attempt*5*1000 + ' milliseconds - attempt #' + attempt)
+    cy.wait(attempt*5*1000)
+    
     cy.task('log', 'Visiting '+Cypress.env('SPI_OAUTH_URL'))
     cy.visit(Cypress.env('SPI_OAUTH_URL'))
     
