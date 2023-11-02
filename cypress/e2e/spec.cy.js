@@ -54,8 +54,7 @@ describe('template spec',
       });
 
       cy.get('body').then(($el) => {
-        cy.task('log', $el.find('input[type="submit"]'))
-        if ($el.find('input[type="submit"][name="type"][value="confirmed"]').length > 0) {
+        if ($el.find('button[type="submit"]').length > 0) {
           cy.task('log', 'Need to confirm recovery settings')
           cy.get('button[type="submit"]').click();
         } else {
