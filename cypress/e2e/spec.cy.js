@@ -54,13 +54,13 @@ describe('template spec',
       });
 
       cy.get('body').then(($el) => {
-        if ($el.find('input[type="submit"]').length > 0) {
-          cy.task('log', 'found input')
+        if ($el.find('button[type="submit"]').length > 0) {
+          cy.task('log', 'found button')
           cy.task('log', $el.text())
         }
-        if ($el.find('input[type="submit"][name="commit"][value="Remind me later"]').length > 0) {
+        if ($el.find('button[type="submit"]').length > 0) {
           cy.task('log', 'Need to confirm recovery settings')
-          cy.get('input[type="submit"][name="commit"][value="Remind me later"]').click();
+          cy.get('button[type="submit"]').last().click();
         } else {
           cy.task('log', 'No need to confirm recovery settings')
         }
