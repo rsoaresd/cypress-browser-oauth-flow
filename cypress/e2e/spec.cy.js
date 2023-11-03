@@ -54,6 +54,10 @@ describe('template spec',
       });
 
       cy.get('body').then(($el) => {
+        if ($el.find('input[type="submit"]').length > 0) {
+          cy.task('log', 'found input')
+          cy.task('log', $el.text())
+        }
         if ($el.find('input[type="submit"][name="commit"][value="Remind me later"]').length > 0) {
           cy.task('log', 'Need to confirm recovery settings')
           cy.get('input[type="submit"][name="commit"][value="Remind me later"]').click();
@@ -73,3 +77,4 @@ describe('template spec',
   })
 
 })
+
